@@ -1,4 +1,8 @@
 spring:
+  application:
+    name: gatewaydemo
+  profiles:
+    active: test #指定使用 bootstrap-dev.yml 还是 bootstrap-test.yml
   cloud:
     nacos:
       discovery:
@@ -7,23 +11,15 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
-      routes:
-        - id: gzrb-sys
+          enabled: true #表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+      routes:  #路由配置
+        - id: nacosdemo
           predicates:
             - Path=/api/admin/**
-          uri: lb://gzrb-sys
+          uri: lb://nacosdemo
           filters:
-            - StripPrefix=1
+            - StripPrefix=2  #去除两个前缀
 server:
-  port: 443
-  ssl:
-    enabled: true
-    key-alias: sn
-    key-store: classpath:sn.keystore
-    key-store-password: sn123456
-    keyStoreType: PKCS12
+  port: 9992
 
-http:
-  port: 8001
 

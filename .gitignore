@@ -2,3 +2,5 @@
 /.idea/*
 /root/*/*.iml
 /root/nacos/target/*
+/root/gateway/target/*
+
