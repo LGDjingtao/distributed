@@ -2,7 +2,7 @@ spring:
   application:
     name: nacosdemo
   profiles:
-    active: dev
+    active: test #指定使用 bootstrap-dev.yml 还是 bootstrap-test.yml
   cloud:
     nacos:
       #注册中心使用

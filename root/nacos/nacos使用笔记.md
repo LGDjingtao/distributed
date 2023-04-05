@@ -21,3 +21,12 @@
 </dependency>
 
 ##创建配置文件
+bootstrap.yml 这个yml里面有详细注释,这里不详细说明,重点是看怎么注册到nacos和怎么获取nacos的指定配置
+
+##关于部署项目使用那个环境的问题
+在dockerfile里面可以指定
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar", "--spring.profiles.active=[环境名dev或是test]"]
+关于这是关于dockerfile的知识,
+但是核心逻辑是改变配置文件的这一项
+spring.profiles.active = [环境名dev或者test]
+
