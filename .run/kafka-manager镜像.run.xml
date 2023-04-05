@@ -1,0 +1,28 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="kafka-manager镜像" type="docker-deploy" factoryName="docker-image" server-name="Docker">
+    <deployment type="docker-image">
+      <settings>
+        <option name="imageTag" value="sheepkiller/kafka-manager" />
+        <option name="containerName" value="kafka-manager" />
+        <option name="envVars">
+          <list>
+            <DockerEnvVarImpl>
+              <option name="name" value="ZK_HOSTS" />
+              <option name="value" value="zookeeper-server:2181" />
+            </DockerEnvVarImpl>
+          </list>
+        </option>
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="9000" />
+              <option name="hostPort" value="9667" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="commandLineOptions" value="-d  --network app-tier --rm" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>
