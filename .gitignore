@@ -1,3 +1,4 @@
 /root/*.iml
 /.idea/*
 /root/*/*.iml
+/root/nacos/target/*

@@ -13,7 +13,7 @@
     <description>分布式聚合</description>
 
     <modules>
-        <module>tset</module>
+        <module>nacos</module>
     </modules>
 
 

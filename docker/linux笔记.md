@@ -1,4 +1,4 @@
-# linux笔记
+# linux笔记-centos7
 
 #linux常用命令
 systemctl restart network -重启网络
@@ -40,7 +40,13 @@ iptables -vnL|grep 6379 --查看linux开放端口
 #### 常见问题
 idea远程连接不上docker
 
-#### docker常见命令
+
+#### 卸载非docker安装的mysql
+执行如下命令查看已经安装的mysql
+rpm -qa|grep -i mysql
+执行如下命令卸载所有mysql软件包
+yum -y remove mysql*
+
 
 ##### nginx
 docker cp nginx:/etc/nginx/nginx.conf /data/nginx/ && docker cp nginx:/var/log/nginx /data/nginx/log && docker cp nginx:/etc/nginx/conf.d/default.conf /data/nginx/conf.d/
