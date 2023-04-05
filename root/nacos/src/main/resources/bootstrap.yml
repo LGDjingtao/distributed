@@ -1,21 +1,8 @@
 spring:
   application:
-    name: nacosdemo
+    name: nacosdemo #指定了从nacosdemo-[环境标识].yaml 拿取配置 这个name很重要,必须和nacos的配置文件的前缀一样
   profiles:
     active: test #指定使用 bootstrap-dev.yml 还是 bootstrap-test.yml
-  cloud:
-    nacos:
-      #注册中心使用
-      discovery:
-        server-addr: http://192.168.80.128:8848
-        namespace: distributed_dev  #注册到distributed_dev这个命名空间的注册中心
-      #配置中心使用
-      config:
-        server-addr: http://192.168.80.128:8848
-        namespace: distributed_dev  #使用distributed_dev这个命名空间的配置中心
-        file-extension: yaml
-        shared-configs:
-          - data-id: test2-dev.yaml
-            group: COMMON_GROUP  #一定要和配置列表的Group名一致
+
 server:
   port: 8081

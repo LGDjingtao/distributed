@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        #        false cp模式 true AP模式
+        ephemeral: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: gzrb-sys
+          predicates:
+            - Path=/api/admin/**
+          uri: lb://gzrb-sys
+          filters:
+            - StripPrefix=1
+server:
+  port: 443
+  ssl:
+    enabled: true
+    key-alias: sn
+    key-store: classpath:sn.keystore
+    key-store-password: sn123456
+    keyStoreType: PKCS12
+
+http:
+  port: 8001
+
