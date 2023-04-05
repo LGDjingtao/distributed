@@ -16,7 +16,7 @@ spring:
         - id: nacosdemo
           predicates:
             - Path=/api/admin/**
-          uri: lb://nacosdemo
+          uri: lb://nacosdemo  #http://localhost:9992/api/admin/c  -> 请求后就会转发到  http://localhost:8081/c  8081是nacosdemo的微服务端口
           filters:
             - StripPrefix=2  #去除两个前缀
 server:
