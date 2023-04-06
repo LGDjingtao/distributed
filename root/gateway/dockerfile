@@ -1,0 +1,5 @@
+FROM williamyeh/java8:latest
+MAINTAINER itfeng<xxxxxx666@163.com>
+COPY ./target/gateway.jar gateway.jar
+ENTRYPOINT ["java","-jar","/gateway.jar"]
+

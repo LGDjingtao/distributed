@@ -132,4 +132,25 @@ docker run \
 http://192.168.80.128:15672/
 默认账号密码都是 guest 
 
+##阶段实战部署root聚合项目下的gateway微服务和nacos微服务
+1.先打包一个java8镜像,这是打包微服务镜像的基础
+docker pull williamyeh/java8
+
+2.打包一定要注意加spring-boot-maven-plugin插件到pom文件,这个很重要,如果不加,-jar启动时会找不到main类
+
+3.编写dockerfile,dockerfile放在和target同一级目录,例如测试nacos微服务dockerfile详细信息
+FROM williamyeh/java8:latest                   # 依赖的java8镜像
+MAINTAINER itfeng<xxxxxx666@163.com>           # 作者信息
+COPY ./target/nacos.jar nacos.jar              # 复制targer下的nacos.jar 复制到 根目录
+ENTRYPOINT ["java","-jar","/nacos.jar"]        # 启动nacos测试微服务的的命令
+
+4.启动nacos测试微服务容器
+docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
+
+5.安按照上面同样的方法部署完gateway
+
+6.开始测试
+http://192.168.80.128:9992/api/admin/c
+页面可以得到获取的配置信息 test
+
 

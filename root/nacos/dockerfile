@@ -1,0 +1,5 @@
+FROM williamyeh/java8:latest
+MAINTAINER itfeng<xxxxxx666@163.com>
+COPY ./target/nacos.jar nacos.jar
+ENTRYPOINT ["java","-jar","/nacos.jar"]
+
