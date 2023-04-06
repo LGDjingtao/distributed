@@ -144,6 +144,8 @@ MAINTAINER itfeng<xxxxxx666@163.com>           # 作者信息
 COPY ./target/nacos.jar nacos.jar              # 复制targer下的nacos.jar 复制到 根目录
 ENTRYPOINT ["java","-jar","/nacos.jar"]        # 启动nacos测试微服务的的命令
 
+idea的运行配置里面有一个 [上传nacos微服务镜像] 运行配置 运行这个配置可以直接上传镜像到服务器
+
 4.启动nacos测试微服务容器
 docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
 
