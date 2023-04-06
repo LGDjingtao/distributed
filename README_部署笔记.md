@@ -50,7 +50,7 @@ docker logs [容器id]
 文件放在ashore\docker\nacos\nacos_sql\nacos-mysql.sql
 
 5.application.properties 这是nacos的配置文件
-文件放在ashore\docker\nacos\nacos_appliaction\application.properties
+这里提供了参考properties文件放在\docker\nacos\nacos_appliaction\application.properties这个目录下
 记得修改为自己的数据库地址
 db.url.0=jdbc:mysql://x.x.x:3306/nacos?
 db.user=xxx
