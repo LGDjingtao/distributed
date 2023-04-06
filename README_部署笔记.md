@@ -133,6 +133,10 @@ http://192.168.80.128:15672/
 默认账号密码都是 guest 
 
 ##阶段实战部署root聚合项目下的gateway微服务和nacos微服务
+0.准备工作,导入我准备好的nacos配置中心的配置 配置文件在
+命名空间名称              命名空间ID          配置数     操作
+distributed_test        distributed_test   2        详情 删除 编辑
+
 1.先打包一个java8镜像,这是打包微服务镜像的基础
 docker pull williamyeh/java8
 
