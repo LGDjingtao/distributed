@@ -30,3 +30,8 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar", 
 但是核心逻辑是改变配置文件的这一项
 spring.profiles.active = [环境名dev或者test]
 
+##nacos开发环境部署遇到注册IP地址混乱的情况怎么处理？
+加入如下配置就可以防止开发环境注册服务ip混乱
+spring.cloud.nacos.discovery.ip:192.168.1.1[当前主机使用的ip]
+spring.cloud.nacos.discovery.prot:8080[当前服务使用的端口]
+
