@@ -152,7 +152,7 @@ docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
 5.安按照上面同样的方法部署完gateway
 
 6.开始测试
-http://192.168.80.128:9992/api/admin/c
+http://[服务器ip]:9992/api/admin/c
 页面可以得到获取的配置信息 test
 
 
