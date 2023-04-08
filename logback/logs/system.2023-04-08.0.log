@@ -1,0 +1,133 @@
+2023-04-08 20:26:31 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:26:31 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:26:31 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:27:41 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:27:41 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:27:41 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:28:41 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:28:41 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:28:41 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:28:41 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 20:29:07 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:29:07 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:29:07 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:29:07 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 20:29:38 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:29:38 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:29:38 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:29:38 [main] ERROR org.example.App -  --- error --- / by zero 
+2023-04-08 20:33:59 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:33:59 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:33:59 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:33:59 [main] ERROR org.example.App -  --- error --- {} 
+java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:23)
+	at org.example.App.main(App.java:32)
+2023-04-08 20:34:16 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:34:16 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:34:16 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:34:16 [main] ERROR org.example.App -  --- error --- {} 
+java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:23)
+	at org.example.App.main(App.java:32)
+2023-04-08 20:34:20 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:34:20 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:34:20 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:36:07 [main] ERROR org.example.App -  --- error --- {} 
+java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:23)
+	at org.example.App.main(App.java:32)
+2023-04-08 20:38:25 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:38:25 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:38:25 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:38:25 [main] ERROR org.example.App -  --- error --- {} 
+java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:23)
+	at org.example.App.main(App.java:32)
+2023-04-08 20:39:39 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:39:39 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:39:39 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:39:47 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:39:47 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:39:47 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:39:52 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:39:52 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:39:52 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:39:58 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:39:58 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:39:58 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:40:18 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:40:18 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:40:18 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:40:56 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:40:56 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:40:56 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:40:59 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 20:41:39 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:23) 
+2023-04-08 20:41:56 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:41:56 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:41:56 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:41:56 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 20:41:56 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:23) 
+2023-04-08 20:45:54 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:45:54 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:45:54 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:45:54 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:26)
+	at org.example.App.main(App.java:42)
+ 
+2023-04-08 20:45:54 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:46:04 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:46:04 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:46:04 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:46:09 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero
+	at org.example.App.testLevel(App.java:26)
+	at org.example.App.main(App.java:42)
+ 
+2023-04-08 20:46:35 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:46:53 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:46:53 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:46:53 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:14 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:14 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:52:33 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:52:33 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:52:33 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:33 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:33 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:52:37 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:52:37 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:52:37 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:49 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:52:49 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:52:54 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:52:54 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:52:54 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:53:16 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:53:16 [main] ERROR org.example.App -  --- error --- org.example.App.testLevel(App.java:26) 
+2023-04-08 20:57:45 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:57:45 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:57:45 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:57:45 [main] ERROR org.example.App -  --- error --- / by zero 
+2023-04-08 20:57:59 [main] INFO org.example.App -  --- info ---  
+2023-04-08 20:57:59 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 20:57:59 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 20:57:59 [main] ERROR org.example.App -  --- error --- / by zero 
+2023-04-08 21:01:40 [main] INFO org.example.App -  --- info ---  
+2023-04-08 21:01:40 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 21:01:40 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 21:01:40 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 21:02:38 [main] INFO org.example.App -  --- info ---  
+2023-04-08 21:02:38 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 21:02:38 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 21:02:38 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 21:03:13 [main] INFO org.example.App -  --- info ---  
+2023-04-08 21:03:13 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 21:03:13 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 21:03:13 [main] ERROR org.example.App -  --- error --- java.lang.ArithmeticException: / by zero 
+2023-04-08 21:04:08 [main] INFO org.example.App -  --- info ---  
+2023-04-08 21:04:08 [main] WARN org.example.App -  --- warn ---  
+2023-04-08 21:04:08 [main] ERROR org.example.App -  --- error ---  
+2023-04-08 21:04:08 [main] ERROR org.example.App -  java.lang.ArithmeticException: / by zero 
+2023-04-08 21:04:08 [main] ERROR org.example.App -  org.example.App.testLevel(App.java:27) 
+2023-04-08 21:04:08 [main] ERROR org.example.App -  org.example.App.main(App.java:38) 
