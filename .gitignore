@@ -4,3 +4,4 @@
 /root/nacos/target/*
 /root/gateway/target/*
 
+/root/logback/target/*
