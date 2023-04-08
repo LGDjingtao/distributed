@@ -5,3 +5,4 @@
 /root/gateway/target/*
 
 /root/logback/target/*
+/root/shellpoj/target/*

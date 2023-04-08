@@ -1,0 +1,13 @@
+FROM williamyeh/java8:latest
+
+MAINTAINER zjt<zjt@163.com>
+
+RUN mkdir -p /shellpoj/{app,logs} && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/shanghai" > /etc/timezone;
+
+WORKDIR /shellpoj/app
+
+ADD target/gzrb-estate.jar ./
+
+EXPOSE 9003
+
+ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:-UseContainerSupport","-server","-XX:+UseStringDeduplication","-XX:+UseG1GC","-XX:+DisableExplicitGC", "-XX:-HeapDumpOnOutOfMemoryError","-XX:+AggressiveOpts"]
