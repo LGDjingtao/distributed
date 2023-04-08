@@ -162,32 +162,41 @@ http://[服务器ip]:9992/api/admin/c
 ##阶段实战部署root聚合项目下的shellpoj
 1.启动nacos容器
 
+
 2.编写docker  
 `这是我从公司直接copy的原版dockerfile内容,在shellpoj这个微服务下我自己重写了一个dockerfile,这里我把每行的意思详细解释一下`
-
 `引入java8镜像`  
 FROM openjdk:8-jre                           
 `作者信息`  
 MAINTAINER tangxianglin<txline0420@163.com>
-
 `
 在容器内创建2个目录app,logs  mkdir -p /shellpoj/{app,logs}  
 软链接                     ln -sf
 修改容器的时区  echo "Asia/shanghai" > /etc/timezone 
 `
 RUN mkdir -p /senergy/{app,logs} && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/shanghai" > /etc/timezone;
-
-
 `工作目录 让我们进容器的时候默认目录就是这个`
 WORKDIR /senergy/app
-
 `将本机的jar 放到镜像内`
 ADD target/gzrb-estate.jar ./
-
 `暴露端口`
 EXPOSE 9003
-
 `一些启动参数`
 ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:-UseContainerSupport","-server","-XX:+UseStringDeduplication","-XX:+UseG1GC","-XX:+DisableExplicitGC", "-XX:-HeapDumpOnOutOfMemoryError","-XX:+AggressiveOpts"]
 
 
+
+
+3.在服务器做准备工作
+在服务器 /data/ 目录下建一个新目录 shellpoj
+在改目录下写一个shell脚本
+脚本名 : start.sh
+脚本内容 :  
+`#!/bin/bash
+docker run -d --name shellpoj-server \
+--restart always \
+--net=host \
+-v /data/shellpoj/logs:/shellpoj/logs \
+distributed/shellpoj:23.4.9`
+
+4.运行脚本
