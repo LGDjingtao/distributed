@@ -159,4 +159,7 @@ docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
 http://[服务器ip]:9992/api/admin/c
 页面可以得到获取的配置信息 test
 
+##阶段实战部署root聚合项目下的shellpoj
+
+
 
