@@ -6,7 +6,7 @@
     <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-3level %logger{50} - %msg %n"/>
     <property name="pattern-color" value="%gray(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
     <!--    <property name="pattern-color" value="%gray(%d{yyyy-MM-dd HH:mm:ss}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>-->
-    <property name="LOG_PATH" value="/logback/logs"/>
+    <property name="LOG_PATH" value="/shellpoj/logs"/>
     <property name="MAX_HISTORY_DAY" value="15"/>
     <property name="MAX_FILE_SIZE" value="30MB"/>
 

@@ -187,10 +187,10 @@ ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:
 
 
 
-3.在服务器做准备工作
-在服务器 /data/ 目录下建一个新目录 shellpoj
-在改目录下写一个shell脚本
-脚本名 : start.sh
+3.在服务器做准备工作  
+在服务器 /data/ 目录下建一个新目录 shellpoj  
+在该目录下写几个shell 运行脚本  
+脚本名 : start.sh  
 脚本内容 :  
 `#!/bin/bash
 docker run -d --name shellpoj-server \
@@ -199,4 +199,43 @@ docker run -d --name shellpoj-server \
 -v /data/shellpoj/logs:/shellpoj/logs \
 distributed/shellpoj:23.4.9`
 
+脚本名 : stop.sh  
+脚本内容 :
+`#!/bin/bash
+docker stop shellpoj-server
+`
+
+脚本名 : remove.sh  
+脚本内容 :
+`#!/bin/bash
+docker stop shellpoj-server &&  docker rm shellpoj-server
+`
+
+脚本名 : delete.sh  
+脚本内容 :
+`#!/bin/bash
+docker rm shellpoj-server
+`
+
+脚本名 : logs.sh
+脚本内容 :
+`#!/bin/bash
+docker logs -f -t --tail 1000 shellpoj-server
+`
+
 4.运行脚本
+sh start.sh 
+然后可以开始测试shell命令和挂载日志
+进入 /data/shellpoj/logs 文件夹下面有了挂载的日志文件
+
+执行logs.sh  
+可以看到滚动的日志  
+
+执行stop.sh  
+停止容器  
+
+执行delete.sh  
+删除容器  
+
+
+
