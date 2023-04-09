@@ -142,93 +142,93 @@ docker pull williamyeh/java8
 
 2.打包一定要注意加spring-boot-maven-plugin插件到pom文件,这个很重要,如果不加,-jar启动时会找不到main类
 
-3.编写dockerfile,dockerfile放在和target同一级目录,例如测试nacos微服务dockerfile详细信息
-FROM williamyeh/java8:latest                   # 依赖的java8镜像
-MAINTAINER itfeng<xxxxxx666@163.com>           # 作者信息
-COPY ./target/nacos.jar nacos.jar              # 复制targer下的nacos.jar 复制到 根目录
-ENTRYPOINT ["java","-jar","/nacos.jar"]        # 启动nacos测试微服务的的命令
+3.编写dockerfile,dockerfile放在和target同一级目录,例如测试nacos微服务dockerfile详细信息  
+FROM williamyeh/java8:latest                   # 依赖的java8镜像  
+MAINTAINER itfeng<xxxxxx666@163.com>           # 作者信息  
+COPY ./target/nacos.jar nacos.jar              # 复制targer下的nacos.jar 复制到 根目录  
+ENTRYPOINT ["java","-jar","/nacos.jar"]        # 启动nacos测试微服务的的命令  
 
-idea的运行配置里面有一个 [上传nacos微服务镜像] 运行配置 运行这个配置可以直接上传镜像到服务器
+idea的运行配置里面有一个 [上传nacos微服务镜像] 运行配置 运行这个配置可以直接上传镜像到服务器  
 
-4.启动nacos测试微服务容器
-docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
+4.启动nacos测试微服务容器  
+docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7  
 
-5.安按照上面同样的方法部署完gateway
+5.安按照上面同样的方法部署完gateway  
 
-6.开始测试
-http://[服务器ip]:9992/api/admin/c
-页面可以得到获取的配置信息 test
+6.开始测试  
+http://[服务器ip]:9992/api/admin/c  
+页面可以得到获取的配置信息 test  
 
 ## 阶段实战部署root聚合项目下的shellpoj
-1.编写dockerfile
-`这是我从公司直接copy的原版dockerfile内容,在shellpoj这个微服务下我自己重写了一个dockerfile,这里我把每行的意思详细解释一下`
-`引入java8镜像`  
-FROM openjdk:8-jre                           
-`作者信息`  
-MAINTAINER tangxianglin<txline0420@163.com>
+1.编写dockerfile  
+`这是我从公司直接copy的原版dockerfile内容,在shellpoj这个微服务下我自己重写了一个dockerfile,这里我把每行的意思详细解释一下  `  
+`引入java8镜像  `    
+FROM openjdk:8-jre                            
+`作者信息`   
+MAINTAINER tangxianglin<txline0420@163.com>  
 `
-在容器内创建2个目录app,logs  mkdir -p /shellpoj/{app,logs}  
-软链接                     ln -sf
-修改容器的时区  echo "Asia/shanghai" > /etc/timezone 
-`
-RUN mkdir -p /senergy/{app,logs} && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/shanghai" > /etc/timezone;
-`工作目录 让我们进容器的时候默认目录就是这个`
-WORKDIR /senergy/app
-`将本机的jar 放到镜像内`
-ADD target/gzrb-estate.jar ./
-`暴露端口`
-EXPOSE 9003
-`一些启动参数`
-ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:-UseContainerSupport","-server","-XX:+UseStringDeduplication","-XX:+UseG1GC","-XX:+DisableExplicitGC", "-XX:-HeapDumpOnOutOfMemoryError","-XX:+AggressiveOpts"]
+在容器内创建2个目录app,logs  mkdir -p /shellpoj/{app,logs}    
+软链接                     ln -sf  
+修改容器的时区  echo "Asia/shanghai" > /etc/timezone   
+`  
+RUN mkdir -p /senergy/{app,logs} && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/shanghai" > /etc/timezone;     
+`工作目录 让我们进容器的时候默认目录就是这个`  
+WORKDIR /senergy/app  
+`将本机的jar 放到镜像内`  
+ADD target/gzrb-estate.jar ./  
+`暴露端口`  
+EXPOSE 9003  
+`一些启动参数`  
+ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:-UseContainerSupport","-server","-XX:+UseStringDeduplication","-XX:+UseG1GC","-XX:+DisableExplicitGC", "-XX:-HeapDumpOnOutOfMemoryError","-XX:+AggressiveOpts"]  
 
 
 
 
-2.在服务器做准备工作  
+2.在服务器做准备工作   
 在服务器 /data/ 目录下建一个新目录 shellpoj  
 在该目录下写几个shell 运行脚本  
 脚本名 : start.sh  
 脚本内容 :  
-`#!/bin/bash
-docker run -d --name shellpoj-server \
---restart always \
---net=host \
--v /data/shellpoj/logs:/shellpoj/logs \
-distributed/shellpoj:23.4.9`
+`#!/bin/bash  
+docker run -d --name shellpoj-server \  
+--restart always \  
+--net=host \  
+-v /data/shellpoj/logs:/shellpoj/logs \  
+distributed/shellpoj:23.4.9`  
 
 脚本名 : stop.sh  
 脚本内容 :
-`#!/bin/bash
-docker stop shellpoj-server
+`#!/bin/bash  
+docker stop shellpoj-server  
 `
 
 脚本名 : remove.sh  
-脚本内容 :
-`#!/bin/bash
-docker stop shellpoj-server &&  docker rm shellpoj-server
+脚本内容 :  
+`#!/bin/bash  
+docker stop shellpoj-server &&  docker rm shellpoj-server  
 `
 
 脚本名 : delete.sh  
-脚本内容 :
-`#!/bin/bash
-docker rm shellpoj-server
+脚本内容 :  
+`#!/bin/bash  
+docker rm shellpoj-server  
 `
 
-脚本名 : logs.sh
-脚本内容 :
-`#!/bin/bash
-docker logs -f -t --tail 1000 shellpoj-server
+脚本名 : logs.sh  
+脚本内容 :  
+`#!/bin/bash  
+docker logs -f -t --tail 1000 shellpoj-server  
 `
 
-3.运行脚本
-sh start.sh 
+3.运行脚本  
+sh start.sh  
 
 
-4.测试功能
-然后可以开始测试shell命令和挂载日志
-进入 /data/shellpoj/logs 文件夹下面有了挂载的日志文件
+4.测试功能  
+然后可以开始测试shell命令和挂载日志  
+进入 /data/shellpoj/logs 文件夹下面有了挂载的日志文件  
 
-执行logs.sh  
+执行logs.sh    
 可以看到滚动的日志  
 
 执行stop.sh  
