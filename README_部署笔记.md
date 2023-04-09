@@ -28,7 +28,7 @@ docker run -p 3306:3306 \
 
 4.远程连接测试
 
-##Nacos 单机版本的安装
+## Nacos 单机版本的安装
 本次安装的版本为Nacos2.0.2
 
 1.拉取nacos镜像
@@ -81,7 +81,7 @@ ip:8848/nacos
 
 8.添加一个配置,然后去数据库的config_info看有没有新增数据
 
-##Redis安装
+## Redis安装
 1.拉取最新的redis镜像
 docker pull redis
 
@@ -102,7 +102,7 @@ redis-server /etc/redis/redis.conf --appendonly yes --requirepass 123456
 --requirepass 123456 设置密码
 `
 
-##nginx安装
+## nginx安装
 1.拉取最新的nginx镜像
 
 2.服务器创建如下文件夹
@@ -116,7 +116,7 @@ docker run -p 80:80 \
 -v /data/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
 --name nginxcon -d --net host --rm nginx:latest 
 
-##rabbitmq安装
+## rabbitmq安装
 1.拉取mq最新镜像
 docker pull rabbitmq:management
 
@@ -132,7 +132,7 @@ docker run \
 http://192.168.80.128:15672/
 默认账号密码都是 guest 
 
-##阶段实战部署root聚合项目下的gateway微服务和nacos微服务
+## 阶段实战部署root聚合项目下的gateway微服务和nacos微服务
 0.准备工作,导入我准备好的nacos配置中心的配置 配置文件在
 命名空间名称              命名空间ID          配置数     操作
 distributed_test        distributed_test   2        详情 删除 编辑
@@ -159,7 +159,7 @@ docker run -p 8081:8081 --name nacosdemo -d --net host --rm nacos:23.4.7
 http://[服务器ip]:9992/api/admin/c
 页面可以得到获取的配置信息 test
 
-##阶段实战部署root聚合项目下的shellpoj
+## 阶段实战部署root聚合项目下的shellpoj
 1.编写dockerfile
 `这是我从公司直接copy的原版dockerfile内容,在shellpoj这个微服务下我自己重写了一个dockerfile,这里我把每行的意思详细解释一下`
 `引入java8镜像`  
