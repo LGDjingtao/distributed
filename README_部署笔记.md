@@ -160,10 +160,7 @@ http://[服务器ip]:9992/api/admin/c
 页面可以得到获取的配置信息 test
 
 ##阶段实战部署root聚合项目下的shellpoj
-1.启动nacos容器
-
-
-2.编写docker  
+1.编写dockerfile
 `这是我从公司直接copy的原版dockerfile内容,在shellpoj这个微服务下我自己重写了一个dockerfile,这里我把每行的意思详细解释一下`
 `引入java8镜像`  
 FROM openjdk:8-jre                           
@@ -187,7 +184,7 @@ ENTRYPOINT ["java","-jar", "./gzrb-estate.jar","-XX:G1HeapRegionSize=16MB","-XX:
 
 
 
-3.在服务器做准备工作  
+2.在服务器做准备工作  
 在服务器 /data/ 目录下建一个新目录 shellpoj  
 在该目录下写几个shell 运行脚本  
 脚本名 : start.sh  
@@ -223,8 +220,11 @@ docker rm shellpoj-server
 docker logs -f -t --tail 1000 shellpoj-server
 `
 
-4.运行脚本
+3.运行脚本
 sh start.sh 
+
+
+4.测试功能
 然后可以开始测试shell命令和挂载日志
 进入 /data/shellpoj/logs 文件夹下面有了挂载的日志文件
 
