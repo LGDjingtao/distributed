@@ -6,3 +6,4 @@
 
 /root/logback/target/*
 /root/shellpoj/target/*
+/distributed.iml
