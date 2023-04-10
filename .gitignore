@@ -7,3 +7,7 @@
 /root/logback/target/*
 /root/shellpoj/target/*
 /distributed.iml
+/root/utils/guava/target/*
+/root/utils/target/*
+/root/utils/guava/guava.iml
+
