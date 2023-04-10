@@ -17,6 +17,7 @@
         <module>gateway</module>
         <module>logback</module>
         <module>shellpoj</module>
+        <module>utils</module>
     </modules>
 
 
@@ -70,6 +71,7 @@
         <commons-dbutils.version>1.7</commons-dbutils.version>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <guava.version>23.0</guava.version>
 
         <artemis-http-client.version>1.1.3</artemis-http-client.version>
         <dahuatechicc.version>1.0.9</dahuatechicc.version>
