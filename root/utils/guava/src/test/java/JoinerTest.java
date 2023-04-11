@@ -1,5 +1,3 @@
-package Joiner;
-
 import com.google.common.base.Joiner;
 import org.junit.Test;
 
