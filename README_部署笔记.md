@@ -237,5 +237,27 @@ sh start.sh
 执行delete.sh  
 删除容器  
 
+## 构建项目时需要的必备工具的方法
+1.找到对应的版本
+构建项目时找到合适的依赖版本是很重要的,如果引入的某个依赖和其他依赖不兼容适就会产生无穷无尽的启动问题和隐藏bug.
+所以构建的时候需要做到每个依赖都兼容.  
+那么怎么知道自己引入的依赖是否兼容呢?  
+可以去github的wiki去查询  
+举个例子:  
+Spring Cloud Alibaba Version   
+Spring Cloud Version    
+Spring Boot Version  
+这个3个依赖应该适配什么样的版本,github的wiki里面有答案  
+https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E  
+
+2.遇到某个jar包,不知道这个jar有哪些版本的时候,可以去阿里云maven仓库  
+https://developer.aliyun.com/mvn/search  
+
+3.遇到jar冲突怎么结局  
+先下载一个maven helper插件
+这个插件有一个Dependency Analzyer可以去分析依赖冲突 
+很多时候是由于依赖版本问题,  
+或者是多个依赖都间接引入不同版本的同一个jar导致冲突,可以通过引入的时候排除某一个间接依赖  
+
 
 
