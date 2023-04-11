@@ -253,7 +253,7 @@ https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4
 2.遇到某个jar包,不知道这个jar有哪些版本的时候,可以去阿里云maven仓库  
 https://developer.aliyun.com/mvn/search  
 
-3.遇到jar冲突怎么结局  
+3.遇到jar冲突怎么解决  
 先下载一个maven helper插件
 这个插件有一个Dependency Analzyer可以去分析依赖冲突 
 很多时候是由于依赖版本问题,  
