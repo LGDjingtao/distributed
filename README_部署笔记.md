@@ -259,5 +259,24 @@ https://developer.aliyun.com/mvn/search
 很多时候是由于依赖版本问题,  
 或者是多个依赖都间接引入不同版本的同一个jar导致冲突,可以通过引入的时候排除某一个间接依赖  
 
+## kafka的安装
+1.先要创建kafka网络  
+`docker network ls  可以查到目前已有的docker网络`
+`docker network create -d bridge app-tier 创建kafka网络`
+`docker network rm [网络id]  不想要可以删除docker网络`
 
+2.安装zookeeper  
+kafka安装需要依赖zookeeper,暂时并不清楚为什么,后面学了在补上  
+拉取zookeeper镜像  
+`docker pull bitnami/zookeeper:latest`
+
+3.运行zookeeper容器
+`docker run -p 2181:2181 --env ALLOW_ANONYMOUS_LOGIN=yes --name zookeeper-server -d --network app-tier --rm bitnami/zookeeper:latest`
+
+4.安装kafka
+拉取kafka镜像
+`docker pull bitnami/kafka:latest`
+
+4.运行kafka容器
+`docker run -p 9092:9092 --env ALLOW_PLAINTEXT_LISTENE=yes --env KAFKA_ZOOKEEPER_CONNECT=zookeeper-server:2181 --env ALLOW_PLAINTEXT_LISTENER=yes --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.80.128:9092 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 --name kafka-server -d --network app-tier --rm bitnami/kafka:latest`
 

@@ -2,17 +2,21 @@
   <configuration default="false" name="kafka镜像" type="docker-deploy" factoryName="docker-image" server-name="Docker">
     <deployment type="docker-image">
       <settings>
-        <option name="imageTag" value="wurstmeister/kafka" />
+        <option name="imageTag" value="bitnami/kafka:latest" />
         <option name="containerName" value="kafka-server" />
         <option name="envVars">
           <list>
             <DockerEnvVarImpl>
-              <option name="name" value="KAFKA_BROKER_ID" />
-              <option name="value" value="0" />
+              <option name="name" value="ALLOW_PLAINTEXT_LISTENE" />
+              <option name="value" value="yes" />
             </DockerEnvVarImpl>
             <DockerEnvVarImpl>
               <option name="name" value="KAFKA_ZOOKEEPER_CONNECT" />
               <option name="value" value="zookeeper-server:2181" />
+            </DockerEnvVarImpl>
+            <DockerEnvVarImpl>
+              <option name="name" value="ALLOW_PLAINTEXT_LISTENER" />
+              <option name="value" value="yes" />
             </DockerEnvVarImpl>
             <DockerEnvVarImpl>
               <option name="name" value="KAFKA_ADVERTISED_LISTENERS" />
@@ -32,7 +36,7 @@
             </DockerPortBindingImpl>
           </list>
         </option>
-        <option name="commandLineOptions" value="-d --rm  --network app-tier" />
+        <option name="commandLineOptions" value="-d  --network app-tier --rm" />
         <option name="showCommandPreview" value="true" />
       </settings>
     </deployment>

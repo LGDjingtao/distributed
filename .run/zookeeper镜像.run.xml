@@ -2,7 +2,7 @@
   <configuration default="false" name="zookeeper镜像" type="docker-deploy" factoryName="docker-image" server-name="Docker">
     <deployment type="docker-image">
       <settings>
-        <option name="imageTag" value="zookeeper:latest" />
+        <option name="imageTag" value="bitnami/zookeeper:latest" />
         <option name="containerName" value="zookeeper-server" />
         <option name="envVars">
           <list>
