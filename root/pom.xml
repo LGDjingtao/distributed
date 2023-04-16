@@ -18,6 +18,7 @@
         <module>logback</module>
         <module>shellpoj</module>
         <module>utils</module>
+        <module>kafka</module>
     </modules>
 
 
