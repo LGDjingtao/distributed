@@ -89,6 +89,13 @@ partition接收消息后会先去副本备份.
 消费组会实现断点续传功能,一个消费组里面的一个消费者挂了,这个消费组的另一个消费者可以从断点出开始消费.
 而没消费组的消费者只会消费当前开始的topic消息,加--from-beginning参数才能消费之前消息
 
+## 消息发送流程
+
+默认采用的是异步发送的方式,涉及到2个线程main和sender线程,  
+以及一个线程共享变量--RecordAccunulator,main线程将消息发送给RecordAccunulator,  
+sender线程不断从RecordAccunulator中拉取消息发送到broker  
+
+这里涉及到一个消息发送确认机制,
 
 
 
