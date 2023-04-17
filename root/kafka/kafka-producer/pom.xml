@@ -5,28 +5,30 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>kafka</artifactId>
+  <artifactId>kafka-producer</artifactId>
   <version>1.0-SNAPSHOT</version>
-
-  <name>kafka</name>
+  <parent>
+    <groupId>org.example</groupId>
+    <artifactId>kafka</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <name>kafka-producer</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-  <parent>
-    <groupId>org.example</groupId>
-    <artifactId>root</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <modules>
-    <module>kafka-producer</module>
-  </modules>
-  <packaging>pom</packaging>
-  <description>kafka学习模块</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
