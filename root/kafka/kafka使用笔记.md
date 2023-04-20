@@ -95,7 +95,11 @@ partition接收消息后会先去副本备份.
 以及一个线程共享变量--RecordAccunulator,main线程将消息发送给RecordAccunulator,  
 sender线程不断从RecordAccunulator中拉取消息发送到broker  
 
-这里涉及到一个消息发送确认机制,
+这里涉及到一个消息发送确认机制.  
+
+
+
+
 
 
 
