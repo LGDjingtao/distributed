@@ -1,7 +1,6 @@
 import com.google.common.base.Splitter;
 import org.junit.Test;
 
-import javax.jws.Oneway;
 import java.util.List;
 import java.util.Map;
 
