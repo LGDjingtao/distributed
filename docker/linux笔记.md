@@ -21,6 +21,14 @@ firewall-cmd --reload
 
 mkdir -p a/a/a/ -创建多级目录
 
+上次文件到服务器
+scp -r  ./sn-iot.jar  root@192.168.1.158:/home/build-image/security
+
+删除多个文件和目录 
+rm -rf ./xx  xx  xx xx
+记住一定加./
+
+mv也要注意迁移目录大小和路径
 
 #### linux常见问题
 centos7.3系统，已经关闭firewalld，但是除了22端口，其余端口无法被外界访问，本地访问正常，解决步骤：
@@ -60,45 +68,7 @@ docker run -p 6378:6379 -v /data/redis/conf/redis.conf:/usr/local/etc/redis/redi
 docker run -d --rm -p 3306:3306 -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name  mysql mysql:latest
 
 
-##### zookeeper
-`--创建网络
-app-tier：网络名称
-–driver：网络类型为bridge`
 
-docker network create app-tier --driver bridge
-
-docker run -d --rm --name zookeeper-server \
---network app-tier \
--e ALLOW_ANONYMOUS_LOGIN=yes \
--p 2181:2181 \
-zookeeper:latest
-
-`可以查看日志`
-docker logs -f zookeeper
-
-`后面部署kafka会使用到zookeeper的ip地址`
-docker inspect app-tier
-
-进入zookeeper容器
-
-[root@VM-4-9-centos ~]# docker exec -it zookeeper_kafka /bin/bash
-root@032659ab5a02:/apache-zookeeper-3.7.0-bin# ls
-LICENSE.txt  NOTICE.txt  README.md  README_packaging.md  bin  conf  docs  lib
-root@032659ab5a02:/apache-zookeeper-3.7.0-bin# cd bin/
-root@032659ab5a02:/apache-zookeeper-3.7.0-bin/bin# zkCli.sh
-
-##### kafka
-
-docker pull wurstmeister/kafka
-
-##### 启动kafka
-docker run -d --name kafka_zookeeper  --network zookeeper_network -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=<zookeeperIP地址>:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://<宿主机IP地址>:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092  wurstmeister/kafka
-
-##### kafka-map
-docker pull kafka-map
-
-`--rm 和 --restart always 冲突 自动重启容器 是不能删除容器的`
-docker run -p 9666:8080 -v /data/kafka-map/data:/usr/local/kafka-map/data --env DEFAULT_USERNAME=admin --env DEFAULT_PASSWORD=admin --name kafka-map-UI -d --restart always --network app-tier dushixiang/kafka-map:latest 
 
 
 

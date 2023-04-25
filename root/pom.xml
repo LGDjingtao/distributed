@@ -19,6 +19,7 @@
         <module>shellpoj</module>
         <module>utils</module>
         <module>kafka</module>
+        <module>springboot</module>
     </modules>
 
 
