@@ -35,6 +35,10 @@ Broker Group中的每一个Broker保存Topic的一个或多个Partition
 
 ## topic使用
 
+### 进入容器
+进入docker容器内部
+`docker exec -it [容器code] /bin/bash`
+
 ### 命令行查看topic
 进入这目录
 `/opt/bitnami/kafka/bin`
