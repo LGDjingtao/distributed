@@ -280,6 +280,8 @@ kafka安装需要依赖zookeeper,暂时并不清楚为什么,后面学了在补�
 4.运行kafka容器
 `docker run -p 9092:9092 --env ALLOW_PLAINTEXT_LISTENE=yes --env KAFKA_ZOOKEEPER_CONNECT=zookeeper-server:2181 --env ALLOW_PLAINTEXT_LISTENER=yes --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.80.128:9092 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 --name kafka-server -d --network app-tier --rm bitnami/kafka:latest`
 
+KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.80.128:9092  
+这个环境变量一定是自己虚拟机上的地址，类似于开放的监听地址和端口，消费者才能在192.168.80.128:9092这个地址端口上监听到消息  
 ## 镜像的打包和加载
 公用的镜像和经常不需要修改的镜像，可以直接打包带到生产环境，具体操作方法如下：
 命令格式：  
