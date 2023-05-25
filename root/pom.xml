@@ -20,6 +20,7 @@
         <module>utils</module>
         <module>kafka</module>
         <module>springboot</module>
+        <module>concurrent</module>
     </modules>
 
 
