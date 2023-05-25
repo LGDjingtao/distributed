@@ -1,6 +1,6 @@
 # linux笔记-centos7
 
-#linux常用命令
+# linux常用命令
 systemctl restart network -重启网络
 systemctl stop NetworkManager -查不到ip,可以用关闭网络管理
 
@@ -45,9 +45,12 @@ iptables -vnL|grep 6379 --查看linux开放端口
 /sbin/iptables -I INPUT -p tcp --dport 30000 -j ACCEPT
 
 
-#### 常见问题
+#### idea常见问题
 idea远程连接不上docker
 
+#### docker常见问题
+docker怎么进入容器
+sudo docker exec -it [容器code] /bin/bash
 
 #### 卸载非docker安装的mysql
 执行如下命令查看已经安装的mysql
