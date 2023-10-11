@@ -21,8 +21,14 @@ firewall-cmd --reload
 
 mkdir -p a/a/a/ -创建多级目录
 
-上次文件到服务器
+上传文件到服务器
 scp -r  ./sn-iot.jar  root@192.168.1.158:/home/build-image/security
+
+使用netcat上传
+服务器A开启监听  
+nc -l  [port]  >  [文件名可随意填]  
+服务器B发送数据
+nc [ip] [port] < [要发送给的文件]
 
 删除多个文件和目录 
 rm -rf ./xx  xx  xx xx
@@ -58,22 +64,6 @@ rpm -qa|grep -i mysql
 执行如下命令卸载所有mysql软件包
 yum -y remove mysql*
 
-
-##### nginx
-docker cp nginx:/etc/nginx/nginx.conf /data/nginx/ && docker cp nginx:/var/log/nginx /data/nginx/log && docker cp nginx:/etc/nginx/conf.d/default.conf /data/nginx/conf.d/
-
-docker run --rm -d -v /data/nginx/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -p 80:80 --name=nginxtest nginx:latest
-
-##### redis
-docker run -p 6378:6379 -v /data/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name rediscon -d --rm redis:latest redis-server /usr/local/etc/redis/redis.conf
-
-##### mysql
-docker run -d --rm -p 3306:3306 -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name  mysql mysql:latest
-
-
-
-
-
-
+### 使用netcat开放系统后门
 
 
