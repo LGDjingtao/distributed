@@ -1,7 +1,7 @@
 # 单节点搭建流程
 
-## 1.私有仓库
-### 1.1 私有搭建
+# 1.私有仓库
+## 1.1 私有搭建
 使用docker官方的私有仓库【registry】。  
 先准备好私有仓库的配置文件，由于默认配置文件删除镜像很麻烦，这里提供好了配置文件。
 ```yaml
@@ -36,9 +36,9 @@ docker run -d --net=host \
 -v /home/senergy/airport-data/registry-data/config/config.yml:/etc/docker/registry/config.yml \
 registry:latest
 ```
-### 1.2私仓使用
+## 1.2私仓使用
 
-#### 1.2.1 地址配置
+### 1.2.1 地址配置
 先配置仓库地址  
 在/etc/docker/daemon.json中配置  
 ```json
@@ -65,7 +65,7 @@ ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 2.配置多个私仓冲突  
 删除之前的私仓，再重启
 
-#### 1.2.2 镜像推送和拉取
+### 1.2.2 镜像推送和拉取
 推送镜像的格式有要求: `[ip]:[port]/[image_name]:[tag]`  
 所以要推送镜像到私有仓库需要先`docker tag`修改镜像格式
 ```shell
@@ -81,7 +81,7 @@ docker push 192.168.1.240:5000/nacos/nacos-server:v2.1.0
 docker pull 192.168.1.240:5000/nacos/nacos-server:v2.1.0
 ```
 
-#### 1.2.2 私有仓库的管理
+### 1.2.2 私有仓库的管理
 由于官方的私有仓库【registry】 不具备管理能力，需要第3方的管理工具赋能。  
 管理工具安装启动脚本：  
 ```shell
@@ -95,7 +95,7 @@ docker run -p 8280:80 --name registry-ui \
 浏览器打开【安装服务器ip】:【8280】
 `
 
-### 2.服务搭建
+# 2.服务搭建
 mysql redis minio mqtt naocs的compose脚本
 ```yaml
 version: "3.8"
@@ -200,7 +200,7 @@ networks:
     driver: bridge
 ```
 
-###  2.1 搭建过程可能遇到的问题
+##  2.1 搭建过程可能遇到的问题
 
 ###  2.1.1 网络配置
 整套服务目前使用别名代替ip,所有服务使用[别名]:[端口]的访问方式。  
@@ -243,6 +243,83 @@ docker run --name dockerfly --restart=always -d -v /var/run/docker.sock:/var/run
 浏览器打开
 http://[ip]:28083/
 `` 
+
+# 3.自动部署
+一键部署以出入口系统为例子
+## 3.1 步骤一
+在docker-compose.yml文件的同目录下建一个固定文件名 `.env`.  
+填入内容如下：
+```properties
+RALID_ENTRNCE=20231027-155145
+```
+
+## 3.2 步骤二
+用外部变量`${RALID_ENTRNCE}`替换镜像版本号
+```yml
+  省略: ....
+  sn-ralid-entrance:
+    image: 192.168.1.240:5000/sn-ralid-entrance:${RALID_ENTRNCE}
+    container_name: sn-ralid-entrance
+    restart: always
+    networks:
+      - by-network
+    ports:
+      - "30012:30012"
+    volumes:
+      - /home/senergy/airport-data/sn-senergy-cold-data/logs:/senergy/logs
+    depends_on:
+      - mysql
+      - redis
+networks:
+  by-network:
+    driver: bridge
+```
+可以使用如下命令，预览yml文件
+```shell
+docker-compose config
+```
+## 部署脚本
+```shell
+#!/bin/bash
+DATE_TIME=`date +%Y%m%d-%H%M%S`
+echo '构建镜像 ===> sn-ralid-entrance:'${DATE_TIME}
+docker build -t  sn-ralid-entrance:${DATE_TIME} . 
+echo '修改镜像tag ====>  192.168.1.240:5000/sn-ralid-entrance:'${DATE_TIME}
+docker tag sn-ralid-entrance:${DATE_TIME} 192.168.1.240:5000/sn-ralid-entrance:${DATE_TIME}
+echo '推送镜像到私有仓库 =====> 192.168.1.240:5000'
+docker push 192.168.1.240:5000/sn-ralid-entrance:${DATE_TIME} 
+source  /home/data/.env
+
+echo 'sn-ralid-entrance:旧版本号='   $RALID_ENTRNCE
+
+sed -i  '1c RALID_ENTRNCE='${DATE_TIME}  /home/data/.env
+
+source /home/data/.env
+
+echo 'sn-ralid-entrance:新版本号='   $RALID_ENTRNCE
+
+echo '执行docker-compose脚本'
+cd /home/data/
+docker-compose up -d
+```
+```text
+注意了！！！！！！！
+在新部署服务的时候
+需要修改脚本替换为自己服务信息
+特别是  
+sed -i  '1c RALID_ENTRNCE='${DATE_TIME}  /home/data/.env
+
+1c 代表第一行
+自己服务版本号填在第几行，就填多少
+例如 
+.env文件现在内容为
+RALID_ENTRNCE=20231027-155145
+SENERGY_COLD=20231027-165215
+
+第2行为冷源系统的版本号
+那么脚本命令为
+sed -i  '2c SENERGY_COLD='${DATE_TIME}  /home/data/.env
+```
 
 
 
