@@ -54,7 +54,7 @@ systemctl restart docker.service
 
 可能会出现的问题-重启docker服务失败  
 可能原因有2种：  
-1.docker版本过低，需要在docker启动文件配置私有仓库地址
+1.docker版本过低，需要在docker扩展启动配置私有仓库地址
 ```shell
 sudo vim /usr/lib/systemd/system/docker.service
 ```
