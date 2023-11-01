@@ -321,5 +321,68 @@ SENERGY_COLD=20231027-165215
 sed -i  '2c SENERGY_COLD='${DATE_TIME}  /home/data/.env
 ```
 
-
-
+# 服务依赖
+使用`healthcheck`解决服务之间依赖问题
+```yaml
+version: "3.8"
+services:
+  mysql:
+    image: 192.168.1.240:5000/mysql:8.0.31
+    container_name: mysql
+    restart: always
+    networks:
+      - 省略
+    ports:
+      - "3306:3306"
+    environment:
+      - 省略
+    volumes:
+      - 省略
+    healthcheck:
+      # mysql ${MYSQL_DATABASE} --user=${MYSQL_USER} --password='${MYSQL_PASSWORD}' --silent --execute "SELECT 1;" 可以配置变量
+      test: mysql byjc --user=root --password='user*2023' --silent --execute "SELECT 1;"
+      # 每隔1秒检测一次 
+      interval: 1s
+      # 超时时间为3秒
+      timeout: 3s
+      # 最多重试30次
+      retries: 30
+      # start_period: 40s # 容器启动后多久开始检测  (default: 0s) 暂时不用
+  nacos:
+    image: 192.168.1.240:5000/nacos/nacos-server:v2.1.0
+    container_name: nacos
+    restart: always
+    networks:
+      - 省略
+    ports:
+      - 省略
+    environment:
+      - 省略
+    volumes:
+      - 省略
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sS nacos:8848/nacos || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    depends_on:
+      mysql:
+        condition: service_healthy
+```
+上面例子，mysql使用healthcheck进行健康检查。
+```shell
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sS 127.0.0.1:9200 || exit 1"] # 检测方式
+      interval: 1m30s  # 多次检测间隔多久 (default: 30s)
+      timeout: 10s # 超时时间 (default: 30s)
+      retries: 3 # 尝试次数(default: 3)
+      start_period: 40s # 容器启动后多久开始检测  (default: 0s)
+```
+nacos使用depends_on强依赖于mysql
+```text
+在depends_on中，可以通过添加一个condition属性来指定服务之间的启动条件。该condition属性可以接受三个值：
+ 
+condition: service_started 表示在依赖的服务启动之后，才启动本服务；
+condition: service_healthy 表示在依赖的服务健康检查通过之后，才启动本服务；
+condition: service_completed_successfully 表示在依赖的服务成功执行之后，才启动本服务。
+```
