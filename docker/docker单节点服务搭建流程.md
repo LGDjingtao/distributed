@@ -394,12 +394,4 @@ nacos启动连不上mysql问题，在测试环境下新启动的mysql不能立�
     healthcheck:
       # mysql ${MYSQL_DATABASE} --user=${MYSQL_USER} --password='${MYSQL_PASSWORD}' --silent --execute "SELECT 1;" 可以配置变量
       test: mysql byjc --host mysql --user=root --password='user*2023' --silent --execute "SELECT 1;"
-      # 每隔1秒检测一次 
-      interval: 1s
-      # 超时时间为3秒
-      timeout: 3s
-      # 最多重试30次
-      retries: 30
-      # start_period: 40s # 容器启动后多久开始检测  (default: 0s) 暂时不用
-
 ```
