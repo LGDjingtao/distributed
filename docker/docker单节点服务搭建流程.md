@@ -368,6 +368,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+        # 依赖服务更新后，true会重新启动该服务
+        restart: true
 ```
 上面例子，mysql使用healthcheck进行健康检查。
 ```shell
@@ -380,9 +382,24 @@ services:
 ```
 nacos使用depends_on强依赖于mysql
 ```text
-在depends_on中，可以通过添加一个condition属性来指定服务之间的启动条件。该condition属性可以接受三个值：
+在depends_on中，可以通过添加一个condition属性来指定服务之间的启动条件。该condition属性可以接受三个值；
  
 condition: service_started 表示在依赖的服务启动之后，才启动本服务；
 condition: service_healthy 表示在依赖的服务健康检查通过之后，才启动本服务；
 condition: service_completed_successfully 表示在依赖的服务成功执行之后，才启动本服务。
+```
+nacos启动连不上mysql问题，在测试环境下新启动的mysql不能立马连接，解决方法就是在检查检查的时候去唤醒mysql
+加了 --host参数，去通过docker网络去唤醒刚起来的mysql
+```shell
+    healthcheck:
+      # mysql ${MYSQL_DATABASE} --user=${MYSQL_USER} --password='${MYSQL_PASSWORD}' --silent --execute "SELECT 1;" 可以配置变量
+      test: mysql byjc --host mysql --user=root --password='user*2023' --silent --execute "SELECT 1;"
+      # 每隔1秒检测一次 
+      interval: 1s
+      # 超时时间为3秒
+      timeout: 3s
+      # 最多重试30次
+      retries: 30
+      # start_period: 40s # 容器启动后多久开始检测  (default: 0s) 暂时不用
+
 ```
