@@ -136,6 +136,7 @@ osixia/keepalived:2.0.20 --loglevel debug --copy-service
 ```
 
 
+
 # 检查vip
 ```shell
 ip a
@@ -268,3 +269,58 @@ vrrp_script chk_http_port {
 ```
 
 ## HAPorxy健康检查文件
+由于HAPorxy交给了swarm管理，暂时不做HAPorxy的健康检查
+
+# 使用stack部署
+
+```shell
+version: "3.8"
+services:
+    keepalived1:
+      image: 192.168.1.240:5000/osixia/keepalived:2.0.20
+      volumes:
+        - /home/keepalived/conf/keepalived.conf:/container/service/keepalived/assets/keepalived.conf
+      networks:
+        hostnet: {}
+      cap_add:
+        - NET_ADMIN
+        - NET_BROADCAST
+        - NET_RAW
+      # privileged: true
+      command:  --loglevel debug  --copy-service  
+      deploy:
+        placement:
+          constraints:
+            - node.hostname == senergy-01
+            - node.labels.role == keepalived1
+    keepalived2:
+      image: 192.168.1.240:5000/osixia/keepalived:2.0.20
+      volumes:
+        - /home/keepalived/conf/keepalived.conf:/container/service/keepalived/assets/keepalived.conf
+      networks:
+        hostnet: {}
+      cap_add:
+        - NET_ADMIN
+        - NET_BROADCAST
+        - NET_RAW
+      # privileged: true
+      command:  --loglevel debug  --copy-service
+      deploy:
+        placement:
+          constraints:
+            - node.hostname == senergy-03
+            - node.labels.role == keepalived2
+networks:
+  hostnet:
+    external: true
+    name: host
+```
+privileged 在stack中会被忽略，由于keepalive需要很高的网络权限，所以网络权限必不可少
+```shell
+      cap_add:
+        - NET_ADMIN
+        - NET_BROADCAST
+        - NET_RAW
+```
+启动命令一定要给   --copy-service
+不然不能copy .conf文件导致服务起不来

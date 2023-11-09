@@ -72,5 +72,4 @@ Manager Status:
  Address:		192.168.1.148:2377
  Raft Status:		Reachable
  Leader:		Yes
-
 ```
