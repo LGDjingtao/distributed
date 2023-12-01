@@ -28,4 +28,30 @@
 ### list基础命令
 `RPUSH key-name value [value ...]  -- 将一个或者多个值推入列表右端`  
 `LPUSH key-name value [value ...]  -- 将一个或者多个值推入列表左端`  
-`RPOP key-name -- 移除并返回列表最右端的的元素`
+`RPOP key-name -- 移除并返回列表最右端的的元素`  
+`LPOP key-name -- 移除并返回列表最左端的的元素`  
+`LINDEX key-name offset -- 返回列表中偏移量为offset的元素`  
+`LRANGE start end -- 返回列表从start偏移量 到end偏移量范围内的所有元素 其中偏移量为start和end的原始也会包含其中`  
+`LTRIM key-name start end -- 对列表进行修剪，只保留从start偏移量到end偏移量范围内的元素，start end元素也会保留`  
+
+### list阻塞式命令 以及
+`BLPOP  key-name [key-name ...] timeout -- 从第一个非空列表中弹出位于最左端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现`  
+`BRPOP  key-name [key-name ...] timeout -- 从第一个非空列表中弹出位于最右端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现`  
+`RPOPLPUSH source-key dest-key -- 从source-key 列表弹出位于最右端的元素，然后将这个元素推入dest-key，并向用户返回这个元素`  
+`BRPOPLPUSH source-key dest-key timeout --  从source-key 列表弹出位于最右端的元素，然后将这个元素推入dest-key，并向用户返回这个元素 如果source-key为空，那么在timeout之内阻塞并等待可弹出的元素出现`    
+
+
+## set
+
+### set基础命令
+`SADD key-name item [item ...] -- 将一个或多个元素添加到集和里，并返回被被添加元素当中原本不存在于集和里面的元素个数`  
+`SREM key-name item [item ...] -- 从集和里面移除一个或者多个元素，并返回被移除的元素的数量`  
+`SISMEMBER key-name item -- 检查元素item是否存在于集和key-name里面`  
+`SCARD key-name -- 返回集和包含的元素数量`  
+`SMEMBERS key-name -- 返回集和包含的所有元素`  
+`SRANDMEMBER key-name [count] -- 从集和里随机返回一个或多个元素. 当count为正数时，命令返回的随机元素不会重复 为负数时可能会重复`
+`SPOP key-name -- 随机地移除元素一个元素，并返回被移除的元素 `  
+`SMOVE source-key dest-key item -- 如果集和source-key包含元素item，那么从集和source-key里面移除元素item，并将元素item添加到集和dest-key中；
+如果item被移除成功，那么命令返回1，否则返回0`
+``
+
