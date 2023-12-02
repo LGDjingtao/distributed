@@ -55,3 +55,11 @@
 如果item被移除成功，那么命令返回1，否则返回0`
 ``
 
+### set用于组合和处理多个集和
+`SDIFF key-name [key-name ...] -- 返回那些存在于一个集和，但是不存在于其他集和中的元素(数学上的差集)`  
+`SDIFFSTORE dest-key key-name [key-name ...] 将那些存在于第一个集和但并不存在于其他的集和中的元素(数学上的差集运算) 存储到dest-key键里面`  
+`SINTER key-name[key-name ...] -- 返回那些同时存在于所有集和中的元素`  
+`SINTERSTORE dest-name key-name [key-name ...] -- 将那些同时存在于所有集和中的元素存到dest-name集和中`  
+`SUNION key-name [key-name ...] -- 返回那些至少存在于所有集和中的元素(数学上的并集计算)`  
+`SUNIONSTORE dest-key key-name[]`
+
