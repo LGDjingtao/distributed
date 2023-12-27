@@ -61,5 +61,56 @@
 `SINTER key-name[key-name ...] -- 返回那些同时存在于所有集和中的元素`  
 `SINTERSTORE dest-name key-name [key-name ...] -- 将那些同时存在于所有集和中的元素存到dest-name集和中`  
 `SUNION key-name [key-name ...] -- 返回那些至少存在于所有集和中的元素(数学上的并集计算)`  
-`SUNIONSTORE dest-key key-name[]`
+`SUNIONSTORE dest-key [key-name ...] -- 将那些至少存在于一个集和中的元素（数学上的并集计算） 存储到dest-key键里面`
+
+
+## hash
+
+### 常用基础命令
+`HMGET key-name key [key ...] -- 从散列里面获取一个或者多个键的值`  
+`HMSET key-name key value [key value ...] -- 为散列里面的一个或者多个键设置值`  
+`HDEL key-name key [key ...] -- 删除散列里面 的一个或者多个键值对 ， 返回成功找到并删除键值对数量`  
+`HLEN key-name -- 返回散列包含的键值对数量`  
+
+### hash的高级特性
+`HEXISTS key-name key -- 检查给定键是否存在于散列中`  
+`HKEYS key-name -- 获取散列包含的所有键`    
+`HVALS key-name -- 获取散列包含的所有值`  
+`HGETALL key-name -- 获取包含所所有的键值对`  
+`HINCRBY key-name key increment -- 将键key 存储的值加上整数increment`
+`HINCRBYFLOAT key-name key increment -- 将键key 存储的值加上浮点数increment`  
+
+
+## zset
+
+### 常用命令
+`ZADD key-name score member [score member ...]  -- 将带有给定分值的成员添加到有序集和里面`  
+`ZREM key-name member [member ...] -- 从有序集和里面移除指定成员，并返回被已移除成员数量`  
+`ZCARD key-name -- 返回有序集和包含的成员数量`  
+`ZINCRBY key-name increment menber -- 从有序集和里面移除给定的成员，并返回被移除成员数量`  
+`ZCOUNT key-name min max -- 返回分值介于min和max之间的成员数量`  
+`ZRANK key-name member -- 返回成员member在有序集和中的排名`  
+`ZSCORE key-name member -- 返回成员member的分值`  
+`ZRANGE key-name start stop [WITHSCORES] -- 返回有序集和中排名介于start和stop之间的成员，如果给定了可选的WITHSCORES选项，那么命令会将成员的分值也一并返回`  
+
+### 有序集和的范围型数据获取命令和范围型数据删除命令，以及并命令和交集命令
+`ZREVRANK key-name member -- 返回有序集和成员member的排名，成员按分值从大到小排列`  
+`ZREVRANGE key-name start stop [WITHSCORES] -- 返回有序集和给定排名范围内的成员，成员按照分值从大到小排列`  
+`ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]-- 返回有序集合中，分值介于min和max的所有成员`
+`ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]-- 获取有序集合中分值介于min和max之间，并按照分值从大到小的顺序来返回他们`
+`ZREMRANGEBYRANK key-name start stop -- 移除有序集合中排名介于start 和 stop 之间的所有成员`  
+`ZREMRANGEBYSCORE key-name min max -- 移除有序集合中分值介于min 和 max 之间的所有成员`   
+`ZINTERSTORE dest-key key-count key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] -- 对给定的有序集和执行类似于集和的交集运算`  
+`ZUNIONSTORE dest-key key-count key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] -- 对给定的有序集和执行类似于集和的交集运算`  
+
+
+## 发布与订阅
+`SUBSCRIBE channel [channel ...] -- 订阅给定的一个或多个频道`  
+`SUBSCRIBE [channel [channel ...]] -- 退订给定的一个或多个频道，如果执行时没有给定任何频道，那么退订所有频道`  
+`PUBLISH channel message -- 向给定频道发消息`  
+`PSUBSCRIBE pattern [pattern ...] -- 订阅与给定模式匹配的所有频道`  
+`PUNSUBSCRIBE [pattern [pattern ...]] -- 退订给定模式，如果执行时没有给定任何模式，那么退订所有模式`  
+
+## 
+
 
