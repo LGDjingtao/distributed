@@ -12,5 +12,7 @@ docker的守护进程是用户与docker交互的枢纽，
 假如需要外部远程使用docker服务，就要开放2375端口，通过守护进程去远程使用docker服务 
 ![img_3.png](img%2Fimg_3.png)
 
-###   
+###  docker 拆线呢各个容器资源占用 
+docker stats  --no-stream  
+--no-stream 可选
 
