@@ -21,6 +21,7 @@
         <module>kafka</module>
         <module>springboot</module>
         <module>concurrent</module>
+        <module>akka</module>
     </modules>
 
 
