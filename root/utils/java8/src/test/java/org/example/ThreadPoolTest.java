@@ -1,6 +1,7 @@
 package org.example;
 
-import org.junit.Test;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 测试线程池
  */
-
+@Slf4j
 public class ThreadPoolTest {
     private final AtomicInteger index = new AtomicInteger();
     //核心线程数 线程池中会维护一个最小的线程数量
