@@ -1,4 +1,4 @@
-package org.example;
+package org.example.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class ThreadPoolTest {
      * ④PriorityBlockingQueue
      * 具有优先级的无界阻塞队列，优先级通过参数Comparator实现。
      */
-    BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue(1);
+    BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(1);
     //threadFactory 线程工厂
     ThreadFactory threadFactory = new ThreadFactory() {
         @Override
@@ -69,7 +69,7 @@ public class ThreadPoolTest {
                     throw new RuntimeException(e);
                 }
                 String name = Thread.currentThread().getName();
-                System.out.println(name);
+                log.info(name);
             });
         }
 
