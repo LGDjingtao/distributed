@@ -3,6 +3,7 @@ package org.example.mixed;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 
 import java.io.File;
@@ -77,5 +78,14 @@ public class NodeTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void double_test(){
+        Double aDouble = 1.25345345;
+        System.out.println(aDouble.toString());
+        String formattedNum = String.format("%.2f", aDouble);
+        Double aDouble1 = Double.valueOf(formattedNum);
+        System.out.println(aDouble1);
     }
 }

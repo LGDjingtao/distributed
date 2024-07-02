@@ -2,14 +2,17 @@ package org.example.netty.ch1;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 
+@Slf4j
 public class EchoClient {
     private final String host;
     private final int port;
@@ -32,6 +35,17 @@ public class EchoClient {
                         }
                     });
             ChannelFuture f = b.connect().sync();
+            //回调
+            f.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                    if (channelFuture.isSuccess()) {
+                        log.info("ChannelFuture Success");
+                    }else {
+                        log.info("ChannelFuture Error");
+                    }
+                }
+            });
             f.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully().sync();
