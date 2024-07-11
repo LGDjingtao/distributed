@@ -14,3 +14,7 @@ docker run -d \
 --restart=always \
 --name registry \
 registry
+
+
+浏览器查看仓库
+https://akataotao.asia:5000/v2/_catalog
