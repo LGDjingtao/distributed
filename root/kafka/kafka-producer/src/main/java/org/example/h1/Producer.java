@@ -1,4 +1,4 @@
-package org.example;
+package org.example.h1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -7,7 +7,10 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
-
+/**
+ * 生产者者
+ * 最基础消费者实现
+ */
 @Slf4j
 public class Producer {
     public static void main(String[] args) {
