@@ -15,3 +15,4 @@
 /root/kafka/kafka-producer/kafka-producer.iml
 /root/kafka/kafka-producer/target/
 /root/concurrent/nio/nio.iml
+/kafka/*
