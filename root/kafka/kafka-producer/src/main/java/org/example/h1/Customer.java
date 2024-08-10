@@ -27,14 +27,15 @@ public class Customer {
         //2.序列化器 KafkaProducer<String, String> 和泛型里面的key value是对应的
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "Comag");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "Comag9");
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties);
         consumer.subscribe(Collections.singletonList("self"));
 
         try {
             while (true) {
-                ConsumerRecords<String, String> poll = consumer.poll(Duration.ofMillis(1000));
+                ConsumerRecords<String, String> poll = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : poll) {
                     log.info("接受: {} :from:self", record);
                 }
